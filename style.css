@@ -33,10 +33,11 @@ body
 .navigation
 {
     position: fixed;
-    width:230px;
+    width: 230px;
     height: 100%;
     background: var(--blue);
-    border-left: 10px solid var(--blue);
+    border-left: 10px solid var(--blue);    
+    border-right: 10px solid var(--blue);
     transition: 0.5s;
     overflow: hidden;
 }
@@ -44,47 +45,45 @@ body
 {
     width: 70px;
 }
-.navigation ul
+.navigation .navside
 {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
 }
-.navigation ul li
+.navigation .navside li
 {
     position: relative;
     width: 100%;
     list-style: none;
-    border-top-left-radius: 30px;
-    border-bottom-left-radius: 30px;
+    border-radius: 15px;
 }
-.navigation ul li:hover,
-.navigation ul li.hovered
+.navigation .navside li:hover,
+.navigation .navside li.hovered
 {
     background: var(--white);
 }
-.navigation ul li:nth-child(1)
+.navigation .navside .default
 {
     margin-top: 5px;
     margin-bottom: 50px;
     pointer-events: none;
 }
-.navigation ul li a
+.navigation .navside li a
 {
     position: relative;
-    display: block;
     width: 100%;
     display: flex;
     text-decoration: none;
     color: var(--white);
 }
-.navigation ul li:hover a,
-.navigation ul li.hovered a
+.navigation .navside li:hover a,
+.navigation .navside li.hovered a
 {
     color: var(--blue);
 }
-.navigation ul li a .icon
+.navigation .navside li a .icon
 {
     position: relative;
     display: block;
@@ -93,11 +92,11 @@ body
     line-height: 60px;
     text-align: center;
 }
-.navigation ul li a .icon ion-icon
+.navigation .navside li a .icon ion-icon
 {
     font-size: 1.25em;
 }
-.navigation ul li a .title
+.navigation .navside li a .title
 {
     position: relative;
     display: block;
@@ -108,8 +107,87 @@ body
     white-space: nowrap;
 }
 
-.navigation ul li:hover a::before,
-.navigation ul li.hovered a::before
+.navigation .navside .li-sub-menu:hover,
+.navigation .navside .li-sub-menu.hovered  
+{
+    background: transparent;
+}
+.navigation .navside .li-sub-menu:hover .sub-nav-name,
+.navigation .navside .li-sub-menu.hovered .sub-nav-name
+{
+    background: var(--white);
+    border-radius: 15px;
+}
+.navigation .navside .li-sub-menu.active ul li a
+{
+    color: #e6e6e6;
+    background: var(--blue);
+    border-left-color: transparent;
+}
+.navigation .navside .li-sub-menu .title
+{
+    position: relative;
+    color: white;
+    padding: 0 10px;
+    display: block;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    text-align: start;
+    white-space: nowrap;
+}
+.navigation .navside .li-sub-menu:hover .title,
+.navigation .navside .li-sub-menu.hovered .title
+{
+    color: var(--blue);
+}
+.navigation .navside .li-sub-menu .sub-nav-name .arrow
+{
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    font-size: 22px;
+    transition: transform 0.4s;;
+}
+.navigation .navside li .sub-nav-name .arrow.rotate{
+    transform: translateY(-50%) rotate(-180deg);
+}
+
+.navigation .navside .ul-sub-nav
+{
+    position: static;
+    display: none;
+}
+.navigation .navside .ul-sub-nav.show
+{
+    display: block;
+}
+.navigation .navside .ul-sub-nav li a
+{
+    padding-left: 80px;
+}
+.navigation .navside .ul-sub-nav li a
+{
+    color: var(--white) !important;
+    background: var(--blue) !important;
+    display: block;
+    height: 50px;
+    line-height: 50px;
+    text-align: start;
+    white-space: nowrap;
+    position: relative;
+}
+.navigation .navside .ul-sub-nav li a:hover,
+.navigation .navside .ul-sub-nav li.sub-hovered a
+{
+    color: var(--white) !important;
+    background: #0d58d1 !important;
+    border-radius: 15px;
+}
+
+/* .navigation .navside li:hover a::before,
+.navigation .navside li.hovered a::before
 {
     content: '';
     position: absolute;
@@ -122,8 +200,8 @@ body
     box-shadow: 35px 35px 0 10px var(--white);
     pointer-events: none;
 }
-.navigation ul li:hover a::after,
-.navigation ul li.hovered a::after
+.navigation .navside li:hover a::after,
+.navigation .navside li.hovered a::after
 { 
     content: '';
     position: absolute;
@@ -135,7 +213,7 @@ body
     border-radius: 50%;
     box-shadow: 35px -35px 0 10px var(--white);
     pointer-events: none;
-}
+} */
 
 /* main */
 .main

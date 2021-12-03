@@ -10,17 +10,18 @@
 <body>
     <div class="container">
         <div class="navigation">
-            <ul>
+            <ul class="navside">
                 <li>
-                    <a href="">
+                    <a href="#">
                         <span class="icon">
                             <ion-icon name="logo-apple"></ion-icon>
                         </span>
                         <span class="title">Brand Name</span>
                     </a>
                 </li>
+                <li class="default"></li>
                 <li>
-                    <a href="">
+                    <a href="#">
                         <span class="icon">
                             <ion-icon name="home-outline"></ion-icon>
                         </span>
@@ -28,7 +29,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="#">
                         <span class="icon">
                             <ion-icon name="person-outline"></ion-icon>
                         </span>
@@ -36,15 +37,45 @@
                     </a>
                 </li>                
                 <li>
-                    <a href="">
+                    <a href="#">
                         <span class="icon">
                             <ion-icon name="chatbox-outline"></ion-icon>
                         </span>
                         <span class="title">Message</span>
                     </a>
                 </li>
+                <li class="li-sub-menu">
+                    <a href="#" class="sub-nav-name">
+                        <span class="icon">
+                            <ion-icon name="chatbox-outline"></ion-icon>
+                        </span>
+                        <span class="title">History
+                            <ion-icon name="chevron-down-outline" class="arrow"></ion-icon>
+                        </span>  
+                    </a>
+                                          
+                    <ul class="ul-sub-nav">
+                        <li><a href="#">Keuangan</a></li>
+                        <li><a href="#">Data</a></li>
+                    </ul>
+                </li>                
+                <li class="li-sub-menu">
+                    <a href="#" class="sub-nav-name">
+                        <span class="icon">
+                            <ion-icon name="chatbox-outline"></ion-icon>
+                        </span>
+                        <span class="title">Poin
+                            <ion-icon name="chevron-down-outline" class="arrow"></ion-icon>
+                        </span>  
+                    </a>
+                                          
+                    <ul class="ul-sub-nav">
+                        <li><a href="#">Kost Poin</a></li>
+                        <li><a href="#">Papi Poin</a></li>
+                    </ul>
+                </li>
                 <li>
-                    <a href="">
+                    <a href="#">
                         <span class="icon">
                             <ion-icon name="help-outline"></ion-icon>
                         </span>
@@ -52,7 +83,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="#">
                         <span class="icon">
                             <ion-icon name="settings-outline"></ion-icon>
                         </span>
@@ -60,7 +91,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="#">
                         <span class="icon">
                             <ion-icon name="lock-closed-outline"></ion-icon>
                         </span>
@@ -68,7 +99,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="#">
                         <span class="icon">
                             <ion-icon name="log-out-outline"></ion-icon>
                         </span>
@@ -292,14 +323,40 @@
             navigation.classList.toggle('active');
             main.classList.toggle('active');
         }
+
         // add hovered class in selected list item
         let list = document.querySelectorAll(".navigation li");
         function activeLink(){
             list.forEach((item) => item.classList.remove("hovered"));
             this.classList.add("hovered");
-        }
-        list.forEach((item) => item.addEventListener("mouseover", activeLink));
+            
+            // add hovered class in selected list item subnav
+            
+            let ulSub = document.querySelector(".ul-sub-nav.show");
+            let arrow = document.querySelector(".arrow.rotate");
+            
+            if (ulSub !== null) { ulSub.classList.remove("show"); }
+            if (arrow !== null) { arrow.classList.remove("rotate"); }
 
+            ulSubNow = this.querySelector(".ul-sub-nav");
+            arrowNow = this.querySelector(".arrow");
+            
+            if (ulSubNow !== null) { ulSubNow.classList.add("show"); }
+            if (arrowNow !== null) { arrowNow.classList.add("rotate"); }
+                 
+            let list2 = document.querySelectorAll(".navigation .ul-sub-nav li");
+            function activeLinkSub(){
+                let item2 = document.querySelector(".navigation .ul-sub-nav li.sub-hovered");
+                console.log(item2);
+                if (item2 !== null) {
+                    item2.classList.remove("sub-hovered");
+                }
+                this.classList.add("sub-hovered");
+            }
+            list2.forEach((item) => item.addEventListener("click", activeLinkSub));
+        }
+        list.forEach((item) => item.addEventListener("click", activeLink));
+           
         // Add Shadow to Header
         let header = document.querySelector('.topbar');
         window.onscroll = function (e) {            
